@@ -115,7 +115,7 @@ static void error_callback (int error, const char* description)
 static void key_callback (GLFWwindow* window, int key, int scancode, int action, int mods)
 {
   if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-      glfwSetWindowShouldClose (window, GLFW_TRUE);
+      glfwSetWindowShouldClose (window, true);
 
   if (key == GLFW_KEY_HOME && action == GLFW_PRESS)
       scene -> ResetZoom ();
@@ -177,12 +177,12 @@ int main (int argc, char* argv[])
   glfwWindowHint (GLFW_CLIENT_API, GLFW_OPENGL_API);
   // Framebuffer
   glfwWindowHint (GLFW_DEPTH_BITS, 24);   // default
-  glfwWindowHint (GLFW_DOUBLEBUFFER, GLFW_TRUE);   // default
+  glfwWindowHint (GLFW_DOUBLEBUFFER, true);   // default
   // Monitor
   glfwWindowHint (GLFW_REFRESH_RATE, GLFW_DONT_CARE);  // highest avail, default
   //glfwWindowHint (GLFW_REFRESH_RATE, 60);
 #ifdef DEBUG
-  glfwWindowHint (GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+  glfwWindowHint (GLFW_OPENGL_DEBUG_CONTEXT, true);
 #endif
 
   GLFWwindow* window = glfwCreateWindow (width, height, "4K_displaywall_bench", NULL, NULL);

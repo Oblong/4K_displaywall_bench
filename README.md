@@ -5,7 +5,9 @@ While most benchmarks are intended for the gaming industry, this simple app is f
 
 #Building
 
-##Linux
+##Ubuntu 16.04
+
+    apt-get install libxrandr-dev libxinerama-dev libxcursor-dev libglfw3-dev libglm-dev
 
     cmake .
 
