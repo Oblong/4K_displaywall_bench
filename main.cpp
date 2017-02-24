@@ -38,6 +38,9 @@
 
 #define GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB 0x8242
 
+int
+buffer_age(GLFWwindow* window);
+
 namespace proto {
   int width = 11520;
   int height = 2160;
@@ -316,9 +319,20 @@ int main (int argc, char* argv[])
   scene -> Setup ();
 
   double test_start = glfwGetTime ();
+  int draw_count = 0, last_age = -1;
   while (!glfwWindowShouldClose (window) &&
          (test_mode.empty() ? true : (glfwGetTime () - test_start < test_length)))
-    { scene -> Draw ();
+    {
+      int age = buffer_age(window);
+      if (age != last_age) {
+        draw_count = 0;
+        last_age = age;
+      }
+      bool draw = age <= 0 || draw_count < age;
+      if (draw) {
+        scene -> Draw ();
+        draw_count++;
+      }
       if (test_mode.empty())
        { output_perf_data (window); }
       else
